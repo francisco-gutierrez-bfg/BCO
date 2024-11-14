@@ -26,6 +26,15 @@ spec:
           value: "bundled,oidc"
         - name: "env.LOG_LEVEL"
           value: "info"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kong
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
 # Inclusión de valores para utilización de version Enterprise
 # Antes de ejecutar el deployment debemos crear el secret correspondiente.
 # Para ello, es necesario contar con la licencia respectiva desde un json file entregado por el proveedor
@@ -65,12 +74,4 @@ enterprise:
     enabled: false
 # Fin de Implementación version enterprise
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: kong
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: true
+
